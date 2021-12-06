@@ -17,7 +17,7 @@ from setuptools import setup, find_packages
 
 readme = open('README.md').read()
 
-VERSION = '2021.12.7.0'
+VERSION = '2021.12.7.1'
 
 requirements = [req.strip() for req in open("requirements.txt").readlines()]
 
