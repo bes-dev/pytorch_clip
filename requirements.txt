@@ -1,4 +1,5 @@
 wheel
+Cython
 omegaconf
 torch
 transformers
