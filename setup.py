@@ -17,9 +17,18 @@ from setuptools import setup, find_packages
 
 readme = open('README.md').read()
 
-VERSION = '2021.12.7.1'
+VERSION = '2021.12.7.2'
 
-requirements = [req.strip() for req in open("requirements.txt").readlines()]
+requirements = [
+    'wheel',
+    'omegaconf',
+    'torch',
+    'transformers',
+    'huggingface_hub',
+    'youtokentome',
+    'googletrans',
+    'numpy'
+]
 
 setup(
     # Metadata
