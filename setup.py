@@ -14,14 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 from setuptools import setup, find_packages
-from pip.req import parse_requirements
 
 readme = open('README.md').read()
 
 VERSION = '2021.12.7.0'
 
-install_reqs = parse_requirements("requirements.txt")
-requirements = [str(ir.req) for ir in install_reqs]
+requirements = [req.strip() for req in open("requirements.txt").readlines()]
 
 setup(
     # Metadata
@@ -48,7 +46,7 @@ setup(
 
     # install .json configs
     package_data={
-        "pytorch_clip_guided_loss": ["configs/*.yml"]
+        "pytorch_clip": ["configs/*.yml"]
     },
     include_package_data=True
 )
