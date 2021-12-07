@@ -42,8 +42,8 @@ def get_clip_model(clip_type: str = "clip_vit_b32", input_range: typing.Tuple[fl
     assert clip_type in get_models_list(), f"Unknown clip_type: {clip_type}"
     cfg = OmegaConf.load(res_path(f"configs/{clip_type}.yml"))
     if cfg.type == "clip":
-        return CLIP.from_pretrained(cfg, input_range, cache_dir=cache_dir), cfg
+        return *CLIP.from_pretrained(cfg, input_range, cache_dir=cache_dir), cfg
     elif cfg.type  == "ruclip":
-        return ruCLIP.from_pretrained(cfg, input_range, cache_dir=cache_dir), cfg
+        return *ruCLIP.from_pretrained(cfg, input_range, cache_dir=cache_dir), cfg
     else:
         raise ValueError(f"Unknown model type: {cfg.type}. Available model types: [clip, ruclip]")
