@@ -204,7 +204,7 @@ class HFCLIPTextProcessor(TextProcessor):
         Returns:
             length (int): maximum length of the input sequence.
         """
-        return self.tokenizer.model_max_len
+        return self.tokenizer.model_max_length
 
     def vocab_size(self) -> int:
         """ Return vocabulary size.
@@ -218,19 +218,21 @@ class HFCLIPTextProcessor(TextProcessor):
             text: str,
             return_tensors: str = "pt",
             return_mask: bool = True,
+            padding=True,
             **kwargs
     ) -> typing.Dict[str, torch.Tensor]:
         """ Encode input text.
         Arguments:
             text (str): input text.
             return_tensor (str): return tokens as torch.Tensor.
-            return_mask (bool): return attention mask
+            return_mask (bool): return attention mask.
+            padding (bool): pad sequence.
             **kwargs: auxiliary arguments.
         Returns:
             encoded_text (dict<str:torch.Tensor>): encoded text.
         """
         text = self.translate(text)
-        output = self.tokenizer(text, return_tensors=return_tensors, **kwargs)
+        output = self.tokenizer(text, return_tensors=return_tensors, padding=padding, **kwargs)
         if not return_mask:
              del output["attention_mask"]
         return output

@@ -17,7 +17,7 @@ from setuptools import setup, find_packages
 
 readme = open('README.md').read()
 
-VERSION = '2021.12.10.2'
+VERSION = '2021.12.11.0'
 
 requirements = [
     'wheel',
