@@ -171,7 +171,7 @@ class YTTMTokenizerTextProcessor(TextProcessor):
         else:
             target_length = self.target_length
         output = {}
-        output["input_ids"] = tokens_to_tensor(tokens, target_length, self.pad_id)
+        output["input_ids"] = tokens_to_tensor(tokens, target_length, self.pad_id).unsqueeze(0)
         if return_mask:
             output["attention_mask"] = (output["input_ids"] != self.pad_id)
         return output
