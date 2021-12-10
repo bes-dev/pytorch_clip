@@ -61,6 +61,13 @@ class TextProcessor:
         """
         return self.vocab_size()
 
+    def get_max_length(self) -> int:
+        """ Return maximum length of the input sequence.
+        Returns:
+            length (int): maximum length of the input sequence.
+        """
+        raise NotImplemented
+
     def vocab_size(self) -> int:
         """ Return vocabulary size.
         Returns:
@@ -120,6 +127,13 @@ class YTTMTokenizerTextProcessor(TextProcessor):
         self.target_length = target_length
         self.tokenizer = yttm.BPE(model=model_path)
 
+    def get_max_length(self) -> int:
+        """ Return maximum length of the input sequence.
+        Returns:
+            length (int): maximum length of the input sequence.
+        """
+        return self.target_length
+
     def vocab_size(self) -> int:
         """ Return vocabulary size.
         Returns:
@@ -172,7 +186,7 @@ class YTTMTokenizerTextProcessor(TextProcessor):
         return self.tokenizer.decode(
             tokens.cpu().numpy().tolist(),
             ignore_ids=[self.eos_id, self.bos_id, self.unk_id, self.pad_id]
-        )[0]
+        )
 
 
 class HFCLIPTextProcessor(TextProcessor):
@@ -184,6 +198,13 @@ class HFCLIPTextProcessor(TextProcessor):
     def __init__(self, tokenizer: CLIPTokenizer, target_lang: typing.Optional[str] = None):
         super().__init__(target_lang)
         self.tokenizer = tokenizer
+
+    def get_max_length(self) -> int:
+        """ Return maximum length of the input sequence.
+        Returns:
+            length (int): maximum length of the input sequence.
+        """
+        return self.tokenizer.model_max_len
 
     def vocab_size(self) -> int:
         """ Return vocabulary size.
@@ -235,8 +256,8 @@ class HFCLIPTextProcessor(TextProcessor):
                 clean_up_tokenization_spaces=clean_up_tokenization_spaces
             )
         else:
-            return self.tokenizer.decode_batch(
-                tokens,
+            return [self.tokenizer.decode(
+                tokens[i],
                 skip_special_tokens=skip_special_tokens,
                 clean_up_tokenization_spaces=clean_up_tokenization_spaces
-            )
+            ) for i in range(tokens.size(0))]
