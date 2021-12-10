@@ -14,9 +14,9 @@ import os
 import typing
 import torch.nn as nn
 from omegaconf import OmegaConf
-from .utils import res_path
-from .models import CLIP, ruCLIP
-from .processor import TextProcessor
+from pytorch_clip.utils import res_path
+from pytorch_clip.models import CLIP, ruCLIP
+from pytorch_clip.processor import TextProcessor
 
 
 def get_models_list() -> typing.List[str]:

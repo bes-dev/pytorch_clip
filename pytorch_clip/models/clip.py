@@ -14,7 +14,7 @@ import typing
 import torch
 import torch.nn as nn
 from transformers import CLIPModel, CLIPProcessor
-from pytorch_clip_guided_loss.processor import HFCLIPTextProcessor, TextProcessor, Resize, Normalize
+from pytorch_clip.processor import HFCLIPTextProcessor, TextProcessor, Resize, Normalize
 # utils
 from omegaconf import OmegaConf
 

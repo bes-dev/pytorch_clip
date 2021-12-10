@@ -12,7 +12,7 @@ limitations under the License.
 """
 import typing
 import torch.nn as nn
-from pytorch_clip_guided_loss.processor import TextProcessor
+from pytorch_clip.processor import TextProcessor
 from omegaconf import OmegaConf
 from .clip import CLIP
 from .ruclip import ruCLIP

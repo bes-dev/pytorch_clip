@@ -16,7 +16,7 @@ import torch
 import torch.nn as nn
 from transformers import CLIPModel
 from huggingface_hub import hf_hub_url, cached_download
-from pytorch_clip_guided_loss.processor import YTTMTokenizerTextProcessor, TextProcessor, Resize, Normalize
+from pytorch_clip.processor import YTTMTokenizerTextProcessor, TextProcessor, Resize, Normalize
 # utils
 from omegaconf import OmegaConf
 
