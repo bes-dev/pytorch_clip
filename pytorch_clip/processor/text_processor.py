@@ -139,7 +139,7 @@ class YTTMTokenizerTextProcessor(TextProcessor):
         Returns:
             length (int): vocabulary size.
         """
-        return self.tokenizer.vocab_size
+        return self.tokenizer.vocab_size()
 
     def encode(
             self,
@@ -198,6 +198,9 @@ class HFCLIPTextProcessor(TextProcessor):
     def __init__(self, tokenizer: CLIPTokenizer, target_lang: typing.Optional[str] = None):
         super().__init__(target_lang)
         self.tokenizer = tokenizer
+        self.bos_id = self.tokenizer.bos_token_id
+        self.eos_id = self.tokenizer.eos_token_id
+        self.pad_id = self.tokenizer.pad_token_id
 
     def get_max_length(self) -> int:
         """ Return maximum length of the input sequence.
@@ -211,7 +214,7 @@ class HFCLIPTextProcessor(TextProcessor):
         Returns:
             length (int): vocabulary size.
         """
-        return self.tokenizer.vocab_size()
+        return self.tokenizer.vocab_size
 
     def encode(
             self,
