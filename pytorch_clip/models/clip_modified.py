@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
-from transformers.models.clip.modeling_clip import CLIPTextTransformer, CLIPModel, CLIPVisionTransformer, CLIPConfig
+from transformers.models.clip.modeling_clip import CLIPTextTransformer, CLIPModel, CLIPVisionTransformer
+from transformers.models.clip.configuration_clip import CLIPConfig, CLIPTextConfig, CLIPVisionConfig
 from transformers.modeling_outputs import BaseModelOutputWithPooling
 
 
