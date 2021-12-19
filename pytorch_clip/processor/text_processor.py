@@ -139,7 +139,7 @@ class YTTMTokenizerTextProcessor(TextProcessor):
         Returns:
             length (int): vocabulary size.
         """
-        return self.tokenizer.vocab_size()
+        return self.tokenizer.vocab_size
 
     def encode(
             self,
