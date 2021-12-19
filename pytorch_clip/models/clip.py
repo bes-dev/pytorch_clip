@@ -13,7 +13,9 @@ limitations under the License.
 import typing
 import torch
 import torch.nn as nn
-from transformers import CLIPModel, CLIPProcessor
+# from transformers import CLIPModel, CLIPProcessor
+from transformers import CLIPProcessor
+from pytorch_clip.models.clip_modified import _CLIPModel
 from pytorch_clip.processor import HFCLIPTextProcessor, TextProcessor, Resize, Normalize
 # utils
 from omegaconf import OmegaConf
@@ -37,7 +39,8 @@ class CLIP(nn.Module):
             text_processor (TextProcessor): text processor.
             image_processor (nn.Module): image processor.
         """
-        model = CLIPModel.from_pretrained(cfg.model.config)
+        # model = CLIPModel.from_pretrained(cfg.model.config)
+        model = _CLIPModel.from_pretrained(cfg.model.config)
         processor = CLIPProcessor.from_pretrained(cfg.processor.config)
         text_processor = HFCLIPTextProcessor(processor.tokenizer, target_lang=cfg.tokenizer.target_lang)
         # load image transforms

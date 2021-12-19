@@ -14,7 +14,8 @@ import os
 import typing
 import torch
 import torch.nn as nn
-from transformers import CLIPModel
+# from transformers import CLIPModel
+from pytorch_clip.models.clip_modified import _CLIPModel
 from huggingface_hub import hf_hub_url, cached_download
 from pytorch_clip.processor import YTTMTokenizerTextProcessor, TextProcessor, Resize, Normalize
 # utils
@@ -43,7 +44,8 @@ class ruCLIP(nn.Module):
         for filename in cfg.ckpt.files:
             fileurl = hf_hub_url(repo_id=cfg.ckpt.repo_id, filename=f"{cfg.name}/{filename}")
             cached_download(fileurl, cache_dir=os.path.join(cache_dir, "ruclip"), force_filename=filename)
-        model = CLIPModel.from_pretrained(os.path.join(cache_dir, "ruclip"))
+        # model = CLIPModel.from_pretrained(os.path.join(cache_dir, "ruclip"))
+        model = _CLIPModel.from_pretrained(os.path.join(cache_dir, "ruclip"))
         # load text tokenizer
         fileurl = hf_hub_url(repo_id=cfg.tokenizer.repo_id, filename=f"{cfg.name}/{cfg.tokenizer.filename}")
         cached_download(fileurl, cache_dir=os.path.join(cache_dir, "ruclip"), force_filename=cfg.tokenizer.filename)
