@@ -1,4 +1,8 @@
 # pytorch_clip: Pytorch API to work with CLIP models.
+[![Downloads](https://pepy.tech/badge/pytorch_clip)](https://pepy.tech/project/pytorch_clip)
+[![Downloads](https://pepy.tech/badge/pytorch_clip/month)](https://pepy.tech/project/pytorch_clip)
+[![Downloads](https://pepy.tech/badge/pytorch_clip/week)](https://pepy.tech/project/pytorch_clip)
+
 
 ## Install package
 
